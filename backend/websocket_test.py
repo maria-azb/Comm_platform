@@ -33,8 +33,11 @@ async def get_pwm_params():
                     data = await ws.recv()
                     print(f"Информация от сервера об устройстве {address}: {data}")
                 except Exception as ex:
-                    print(f"Ошибка: {ex.args}")
+                    print(f"При получени информации об устройстве {address} произошла ошибка: {ex.args}")
             else:
                 print(f"Соединение не установлено. url: {url}")
 
 asyncio.get_event_loop().run_until_complete(get_pwm_params())
+#   При чтении данных об устройствах, адрес которых содержит только цифры, мы получаем ответ "Not found"
+#   Если адрес устройства содержит буквы, то происходит неизвестная ошибка.
+#   Вероятно, здесь где-то здесь закрался баг:)

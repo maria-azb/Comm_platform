@@ -33,9 +33,6 @@ def prepare_data():
     return monitoring_links
 
 
-monitoring_links = prepare_data()
-
-
 @pytest.fixture(scope="function")
 def browser():
     browser = webdriver.Chrome()
@@ -44,6 +41,8 @@ def browser():
 
 
 class TestMonitoring:
+
+    monitoring_links = prepare_data()
 
     @pytest.mark.parametrize('mlink', monitoring_links)
     @pytest.mark.parametrize('pin', [2, 3])
@@ -267,5 +266,3 @@ class TestMonitoring:
             raise ValueError(f'{pin_freq.text} - некорректное значение frequency для Pin 2. '
                              f'Допустимые значения: 1, 2, 5, 10, 20, 50, 100, 200, 500')
         assert value == freq, f'Значение Freq должна быть равно {freq}, а не {value}'
-
-
