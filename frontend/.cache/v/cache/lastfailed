@@ -1,0 +1,5 @@
+{
+  "device_table_test.py": true, 
+  "diagnostic_test.py": true, 
+  "monitoring_test.py": true
+}
